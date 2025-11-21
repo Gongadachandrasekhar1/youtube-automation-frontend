@@ -60,7 +60,6 @@ export default function App() {
     setCurrentVideo(newVideo);
 
     try {
-      // Step 1: Generate Story
       newVideo.status = 'Generating story...';
       newVideo.progress = 20;
       setCurrentVideo({...newVideo});
@@ -79,19 +78,16 @@ export default function App() {
         newVideo.progress = 40;
         setCurrentVideo({...newVideo});
         
-        // Simulate audio generation
         await new Promise(resolve => setTimeout(resolve, 2000));
         newVideo.status = 'Audio generated ✓';
         newVideo.progress = 60;
         setCurrentVideo({...newVideo});
         
-        // Simulate video creation
         await new Promise(resolve => setTimeout(resolve, 3000));
         newVideo.status = 'Video created ✓';
         newVideo.progress = 80;
         setCurrentVideo({...newVideo});
         
-        // Complete
         await new Promise(resolve => setTimeout(resolve, 2000));
         newVideo.status = 'completed';
         newVideo.progress = 100;
@@ -146,7 +142,6 @@ export default function App() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         
-        {/* Header */}
         <header className="mb-8 text-center">
           <div className="inline-flex items-center gap-3 bg-white px-6 py-4 rounded-2xl shadow-xl mb-4">
             <Youtube size={48} className="text-red-600" />
@@ -157,7 +152,6 @@ export default function App() {
           </div>
         </header>
 
-        {/* Navigation */}
         <div className="mb-6 flex gap-2 bg-white rounded-xl p-2 shadow-lg">
           {[
             { id: 'dashboard', label: 'Dashboard', icon: PlayCircle },
@@ -179,11 +173,8 @@ export default function App() {
           ))}
         </div>
 
-        {/* Dashboard Tab */}
         {activeTab === 'dashboard' && (
           <div className="space-y-6">
-            
-            {/* Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-6 rounded-xl shadow-lg">
                 <div className="flex items-center justify-between">
@@ -216,7 +207,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Quick Actions */}
             <div className="bg-white rounded-xl shadow-lg p-6">
               <h2 className="text-2xl font-bold mb-4">Quick Actions</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -239,7 +229,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Current Processing */}
             {currentVideo && (
               <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl shadow-lg p-6">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
@@ -260,7 +249,6 @@ export default function App() {
               </div>
             )}
 
-            {/* System Info */}
             <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6">
               <h3 className="font-bold text-blue-900 mb-3 text-lg">📊 System Status</h3>
               <div className="space-y-2 text-sm text-blue-800">
@@ -275,7 +263,6 @@ export default function App() {
           </div>
         )}
 
-        {/* Videos Tab */}
         {activeTab === 'videos' && (
           <div className="space-y-4">
             <h2 className="text-2xl font-bold">Generated Videos</h2>
@@ -284,7 +271,7 @@ export default function App() {
               <div className="text-center py-12 bg-white rounded-xl">
                 <Film size={64} className="mx-auto text-gray-300 mb-4" />
                 <p className="text-gray-500 text-lg">No videos yet</p>
-                <p className="text-gray-400">Click "Generate Video Now" to create your first video!</p>
+                <p className="text-gray-400">Click Generate Video Now to create your first video!</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 gap-4">
@@ -337,7 +324,6 @@ export default function App() {
           </div>
         )}
 
-        {/* Settings/About Tab */}
         {activeTab === 'settings' && (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold">System Information</h2>
@@ -382,37 +368,3 @@ export default function App() {
     </div>
   );
 }
-```
-
-Commit this file.
-
----
-
-#### **FILE 6: .gitignore**
-
-Click "Add file" → "Create new file"
-Filename: `.gitignore`
-```
-node_modules/
-build/
-.env.local
-.DS_Store
-```
-
-Commit this file.
-
----
-
-### **STEP 3: Deploy to Vercel**
-
-1. Go to: https://vercel.com/
-2. Sign up with GitHub
-3. Click **"Add New"** → **"Project"**
-4. Import `youtube-automation-frontend`
-5. **Framework Preset**: Create React App
-6. Click **"Deploy"**
-7. Wait 2-3 minutes
-
-**✋ When done, paste your Vercel URL here:** 
-```
-My Frontend URL: https://________.vercel.app
